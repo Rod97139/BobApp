@@ -4,6 +4,12 @@ Clone project:
 
 > git clone XXXXX
 
+> docker-compose up --build
+>
+> docker-compose down --volumes --remove-orphans
+>
+> docker-compose down --volumes --rmi all
+
 ## Front-end 
 
 Go inside folder the front folder:
