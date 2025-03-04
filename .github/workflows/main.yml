@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: mvn install -DskipTests
 
-      - name: run tests 
+      - name: Run tests 
         run: mvn --batch-mode clean verify #same as mvn -B clean verify
 
       - name: Generate reports
@@ -34,4 +34,29 @@ jobs:
           name: backend-coverage-report
           path: back/target/site/jacoco/
       
-  # Tests-And-Reports-Frontend:
+  Tests-And-Reports-Frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/front
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run coverage
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage-report
+          path: front/coverage/bobapp/
