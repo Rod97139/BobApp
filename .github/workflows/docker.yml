@@ -1,11 +1,15 @@
 name: Build and Upload Docker Images
-on: [push]
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
 
 jobs:
   build-and-push:
     name: Build and Push Docker Images
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
