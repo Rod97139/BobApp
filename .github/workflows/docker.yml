@@ -1,8 +1,8 @@
 name: Build and Upload Docker Images
 on:
   workflow_run:
-    workflows: ["SonarQube"]
     branches: [master]
+    workflows: ["SonarQube"]
     types:
       - completed
 
