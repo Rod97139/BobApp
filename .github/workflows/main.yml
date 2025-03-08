@@ -1,4 +1,5 @@
 name: CI
+
 run-name: Lancez les tests et générez les rapports
 on: 
   pull_request:
