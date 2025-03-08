@@ -1,0 +1,17 @@
+name: Approve Pull Request
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  approve:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+          pull-requests: write
+    steps:
+      - name: Approve the pull request
+        uses: hmarr/auto-approve-action@v4
