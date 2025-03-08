@@ -4,7 +4,6 @@ on:
     workflows: ["SonarQube"]
     types:
       - completed
-
 jobs:
   build-and-push:
     name: Build and Push Docker Images
