@@ -1,6 +1,7 @@
 name: SonarQube
 on:
   workflow_run:
+    branches: [master]
     workflows: ["CI"]
     types:
       - completed
