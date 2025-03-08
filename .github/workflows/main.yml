@@ -2,6 +2,8 @@ name: CI
 
 run-name: Lancez les tests et générez les rapports
 on:
+  push:
+    branches: [master]
   pull_request:
       branches: [master]
       types: [opened, reopened, closed]
