@@ -37,17 +37,6 @@ jobs:
         with:
           name: backend-coverage-report
           path: back/target/site/jacoco/
-      - name: Add comment if backend tests passed
-        if: success()
-        uses: actions/github-script@v4
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Les tests backend sont réussis !'
-            })
       
   Tests-And-Reports-Frontend:
     if: ${{github.event.review.state == 'approved'}}
@@ -76,14 +65,3 @@ jobs:
         with:
           name: frontend-coverage-report
           path: front/coverage/bobapp/
-      - name: Add comment if frontend tests passed
-        if: success()
-        uses: actions/github-script@v4
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Les tests frontend sont réussis !'
-            })
