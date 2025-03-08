@@ -8,7 +8,7 @@ on:
 jobs:
 
   Tests-And-Reports-Backend:
-    if: ${{ github.event.pull_request.merged || (github.event.action == 'opened' || github.event.action == 'reopened') }}
+    if: ${{ github.event.review.state == 'approved' || (github.event.action == 'opened' || github.event.action == 'reopened') }}
     runs-on: ubuntu-latest
     defaults:
       run:
