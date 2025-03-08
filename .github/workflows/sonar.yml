@@ -1,9 +1,9 @@
 name: SonarQube
 on:
-  pull_request:
-    branches: [master]
-    types: [closed]
-
+  workflow_run:
+    workflows: ["SonarQube"]
+    types:
+      - completed
 jobs:
   Sonar-Backend:
     name: Build and Code analyse Backend
@@ -11,7 +11,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ github.workspace }}/back
-    if: github.event.pull_request.merged == true
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       
       - uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ github.workspace }}/front
-    if: github.event.pull_request.merged == true
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
         with:
