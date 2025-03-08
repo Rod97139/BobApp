@@ -1,11 +1,8 @@
 name: SonarQube
 on:
   pull_request:
+    branches: [master]
     types: [closed]
-  # workflow_run:
-  #   workflows: ["CI"]
-  #   types:
-  #     - completed
 
 jobs:
   Sonar-Backend:
