@@ -3,7 +3,7 @@ run-name: Lancez les tests et générez les rapports
 on: 
   pull_request:
       branches: [master]
-      types: [opened, synchronize]
+      types: [opened, reopened]
 jobs:
 
   Tests-And-Reports-Backend:
