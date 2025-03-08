@@ -1,5 +1,10 @@
 name: SonarQube
-on: [push]
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
 jobs:
   Sonar-Backend:
     name: Build and Code analyse Backend
@@ -7,6 +12,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ github.workspace }}/back
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       
       - uses: actions/checkout@v4
@@ -40,6 +46,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ github.workspace }}/front
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
         with:
