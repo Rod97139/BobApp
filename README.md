@@ -2,7 +2,7 @@
 
 Clone project:
 
-> git clone XXXXX
+> git clone https://github.com/Rod97139/BobApp.git
 
 > docker-compose up --build
 >
